@@ -1,17 +1,17 @@
 
 exports.up = async function(knex) {
-    await knex.schema.createTable('user', tbl => {
-        tbl.increment();
+    await knex.schema.createTable('users', tbl => {
+        tbl.increments();
         tbl.string('username').notNullable().unique();
         tbl.string('password').notNullable();
     })
 
     await knex.schema.createTable('pokemon', tbl => {
-        tbl.increment();
+        tbl.increments();
         tbl.string('name').notNullable().unique();
-        tbl.sting('abilities');
-        tbl.float('height').nutNullable();
-        tbl.integer('age').nutNullable();
+        tbl.string('abilities');
+        tbl.float('height').notNullable();
+        tbl.integer('age').notNullable();
     
 
     })
@@ -19,5 +19,5 @@ exports.up = async function(knex) {
 
 exports.down = async function(knex) {
     await knex.schema.dropTableIfExists('pokemon');
-    await knex.schema.dropTableIfExists('user');
+    await knex.schema.dropTableIfExists('users');
 };
